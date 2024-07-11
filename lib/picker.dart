@@ -129,7 +129,7 @@ class Picker {
       this.confirm,
       this.cancelText,
       this.confirmText,
-      this.backgroundColor,
+      this.backgroundColor = Colors.white,
       this.containerColor,
       this.headerColor,
       this.builderHeader,
@@ -479,7 +479,7 @@ class PickerWidgetState<T> extends State<_PickerWidget> {
       child: picker.title == null
           ? SizedBox()
           : DefaultTextStyle(
-              style: (theme!.textTheme.headline6 ?? theme!.textTheme.titleLarge)
+              style: (theme?.textTheme.titleLarge)
                       ?.copyWith(
                     fontSize: Picker.DefaultTextSize,
                   ) ??
@@ -520,7 +520,7 @@ class PickerWidgetState<T> extends State<_PickerWidget> {
           onPressed: onPressed,
           child: Text(_txt,
               overflow: TextOverflow.ellipsis,
-              textScaleFactor: MediaQuery.of(context).textScaleFactor,
+              textScaler: MediaQuery.of(context).textScaler,
               style: textStyle));
     } else {
       return textStyle == null
@@ -736,7 +736,7 @@ abstract class PickerAdapter<T> {
                         : Colors.black87,
                     fontFamily: theme == null
                         ? ""
-                        : theme.textTheme.headline6?.fontFamily,
+                        : theme.textTheme.titleLarge?.fontFamily,
                     fontSize: Picker.DefaultTextSize),
             child: child != null
                 ? (isSel && picker!.selectedIconTheme != null
@@ -781,7 +781,7 @@ abstract class PickerAdapter<T> {
                     fontSize: _txtSize,
                     fontFamily: theme == null
                         ? ""
-                        : theme.textTheme.headline6?.fontFamily),
+                        : theme.textTheme.titleLarge?.fontFamily),
             child: Wrap(
               children: items,
             )));
